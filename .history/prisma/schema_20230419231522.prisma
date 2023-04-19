@@ -66,14 +66,12 @@ model VerificationToken {
 }
 
 model Poll {
-    id       String   @id @default(cuid())
-    question String
-    answers  Answer[]
+    id            String    @id @default(cuid())
+    question      String
+    questions     Question[]
 }
 
-model Answer {
-    id     String  @id @default(cuid())
-    poll   Poll?   @relation(fields: [pollId], references: [id])
-    pollId String?
-    text   String
+model Question {
+    id  String @id @default(cuid())
+    poll Poll @relation(fields: [id], references: [id], onDelete: Cascade)
 }
