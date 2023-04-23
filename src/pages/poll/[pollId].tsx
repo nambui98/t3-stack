@@ -28,11 +28,11 @@ const Poll: NextPage = () => {
         if (selectedAnswer) {
             submitRes.mutateAsync({
                 answerId: selectedAnswer
-            }).then(() => {
+            }).then(async () => {
                 localStorage.setItem(pollId as string, "true");
-                refetch();
+                await refetch();
                 setHasAnswered(true);
-            }).catch(console.error);
+            }).catch((error) => { console.error(error) });
         }
     };
     return (
