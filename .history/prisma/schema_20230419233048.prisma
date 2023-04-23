@@ -72,15 +72,8 @@ model Poll {
 }
 
 model Answer {
-    id       String     @id @default(cuid())
-    poll     Poll?      @relation(fields: [pollId], references: [id])
-    pollId   String?
-    text     String
-    response Response[]
-}
-
-model Response {
-    id       String  @id @default(cuid())
-    answerId String?
-    Answer   Answer? @relation(fields: [answerId], references: [id])
+    id     String  @id @default(cuid())
+    poll   Poll    @relation(fields: [pollId], references: [id])
+    pollId String?
+    text   String
 }
